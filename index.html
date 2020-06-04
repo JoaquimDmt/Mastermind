@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mastermind</title>
+
+  <style>
+  
+    *{
+        box-sizing: border-box;
+    }
+    
+    html {
+        margin: 0 auto;
+        max-width: 700px;
+        overflow: hidden;
+    }
+    
+    body>div{
+        margin:10px 5px;
+        padding: 5px;
+        border: solid 1px black;
+        background-color: white;
+    }
+    
+    #couleurs, #jeu, .choixCombinaison, .combinaisonEtIndice{
+        display:flex; 
+        justify-content: space-around;
+        align-items: center;
+        margin:5px;
+    }
+    .indices {
+        display:flex; 
+        align-items: center;
+    }
+    .choixCombinaison, .indices {
+        flex: 0 1 300px;
+    }
+    .optionCouleur, .combinaison{
+        flex: 0 1 40px;
+        height:40px;
+        border:1px solid black;
+        min-width: 40px;
+    }
+    .combinaison.select {
+        border: 4px solid purple;
+    }
+    .indices .bien, .indices .mal {
+        flex: 0 1 20px;
+        height:20px;
+        /* background-color:grey; */
+        border:1px solid black;
+    }
+    .combinaison,.indices .bien, .indices .mal {
+        border-radius:30px;
+    }
+    .indices .bien {
+        background-color:black;
+    }
+    .indices .mal {
+        background-color:white;
+    }
+    
+    #message {
+        font-size:200%;
+        position:fixed;
+        left:20%;
+        top:20%;
+        right:20%;
+        bottom:20%;
+        border:5px solid black;
+        border-radius:20px;
+        background-color:#FFFFFFAA;
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content:space-evenly;
+        text-align:center;
+        display:none;
+    }
+  
+    h1{
+        color: white;
+        text-align: center;
+    }
+
+    .optionCouleur{
+        cursor: pointer;
+    }
+
+    #couleurs{
+        padding: 10px;
+    }
+
+    .background{
+        background-image: url("./mastermind-background.jpg");
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        z-index: -1;
+    }
+    #valider{
+        margin: 5px;
+    }
+    #historique{
+        max-height: calc(60vh - 52px);
+        overflow: auto;
+    }
+  
+  </style>
+  <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+  <script src="mastermind.js"></script>
+</head>
+<body>
+
+<div class="background"></div>
+
+<h1>Mastermind</h1>
+
+<div id="couleurs">
+    <div class="optionCouleur" data-col="white"></div>
+    <div class="optionCouleur" data-col="blue"></div>
+    <div class="optionCouleur" data-col="yellow"></div>
+    <div class="optionCouleur" data-col="brown"></div>
+    <div class="optionCouleur" data-col="black"></div>
+    <div class="optionCouleur" data-col="orange"></div>
+    <div class="optionCouleur" data-col="red"></div>
+    <div class="optionCouleur" data-col="green"></div>
+</div>
+    
+<div id="jeu" class="combinaisonEtIndice">    
+    <div class="choixCombinaison">
+        <div class="combinaison select" data-col="none"></div>
+        <div class="combinaison" data-col="none"></div>
+        <div class="combinaison" data-col="none"></div>
+        <div class="combinaison" data-col="none"></div>
+        <div class="combinaison" data-col="none"></div>    
+    </div>    
+    <div class="indices">
+    </div>
+</div>
+
+    <button id="valider">Valider</button>
+
+<div id="historique">
+</div>
+
+<div id="message">
+    <div>
+        <div>
+            Félicitations, vous avez gagné en <span id="nombreCoups"></span> coups!
+        </div>
+
+        <div>
+            <button id="plusFacile">Plus facile</button>
+            <button id="plusDur">Plus dur</button>
+        </div>
+
+        <button id="rejouer">Rejouer !</button>
+    </div>
+</div>
+
+</body>
+</html>
